@@ -148,11 +148,11 @@ public class LibrarianSignIn extends main {
                 btnBackActionPerformed(evt);
             }
         });
-        panelGradient1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
+        panelGradient1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 30));
 
         getContentPane().add(panelGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 720));
 
-        pack();
+        setSize(new java.awt.Dimension(1290, 750));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
      

@@ -170,7 +170,7 @@ public class ReaderSignUp extends main {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(lblLengthIsLess1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -193,7 +193,7 @@ public class ReaderSignUp extends main {
                 .addGap(100, 100, 100))
         );
 
-        kGradientPanel2.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 70, 410, -1));
+        kGradientPanel2.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 84, 410, 620));
 
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 760));
 

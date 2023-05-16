@@ -23,6 +23,7 @@ public class ReaderBase extends main {
         initComponents();
         setGuiBase();
         setPersonalization();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private DefaultTableModel bookTableModel;
@@ -62,7 +63,7 @@ public class ReaderBase extends main {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 850, 60));
+        jPanel1.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 850, 40));
 
         lblGreetName.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         lblGreetName.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,10 +73,10 @@ public class ReaderBase extends main {
         jPanel1.add(lblGreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 279, 32));
 
         cbGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Genre", " " }));
-        jPanel1.add(cbGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 230, 102, 32));
+        jPanel1.add(cbGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 80, 102, 32));
 
         cbAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unavailable / Available", "" }));
-        jPanel1.add(cbAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, -1, 31));
+        jPanel1.add(cbAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, 31));
 
         mainTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,25 +93,25 @@ public class ReaderBase extends main {
         });
         jScrollPane1.setViewportView(mainTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 850, 286));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 186, 850, 360));
 
         cbCending.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ascending", " " }));
-        jPanel1.add(cbCending, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 87, 32));
+        jPanel1.add(cbCending, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 120, 32));
 
         rbAuthor.setBackground(new java.awt.Color(255, 51, 51));
         rbAuthor.setForeground(new java.awt.Color(255, 255, 255));
         rbAuthor.setText("Author");
-        jPanel1.add(rbAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 70, -1));
+        jPanel1.add(rbAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 80, -1));
 
         rbTitle.setBackground(new java.awt.Color(255, 51, 51));
         rbTitle.setForeground(new java.awt.Color(255, 255, 255));
         rbTitle.setText("Title");
-        jPanel1.add(rbTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+        jPanel1.add(rbTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
 
         rbDate.setBackground(new java.awt.Color(255, 51, 51));
         rbDate.setForeground(new java.awt.Color(255, 255, 255));
         rbDate.setText("Publication Date");
-        jPanel1.add(rbDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 110, -1));
+        jPanel1.add(rbDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 180, 30));
 
         btnSearch.setBackground(new java.awt.Color(32, 58, 67));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search_25px.png"))); // NOI18N
@@ -122,10 +123,9 @@ public class ReaderBase extends main {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, 30));
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 140, 30));
 
         btnViewBook.setBackground(new java.awt.Color(32, 58, 67));
-        btnViewBook.setForeground(new java.awt.Color(0, 0, 0));
         btnViewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/view_20px.png"))); // NOI18N
         btnViewBook.setText("View");
         btnViewBook.setColor1(new java.awt.Color(102, 102, 102));
@@ -135,10 +135,9 @@ public class ReaderBase extends main {
                 btnViewBookActionPerformed(evt);
             }
         });
-        jPanel1.add(btnViewBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 420, 110, 40));
+        jPanel1.add(btnViewBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 130, 30));
 
         btnLogOut.setBackground(new java.awt.Color(32, 58, 67));
-        btnLogOut.setForeground(new java.awt.Color(0, 0, 0));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Logout Rounded_25px.png"))); // NOI18N
         btnLogOut.setText("Logout");
         btnLogOut.setColor1(new java.awt.Color(102, 102, 102));
@@ -148,14 +147,14 @@ public class ReaderBase extends main {
                 btnLogOutActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, 110, 40));
+        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 520, 140, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/librarrtt.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -50, 1120, 680));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 11, 1120, 640));
 
-        pack();
+        setSize(new java.awt.Dimension(1123, 620));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -360,7 +359,7 @@ public class ReaderBase extends main {
     public void setPersonalization() 
     {
         ReaderBase.currFullName = currFullName;
-        lblGreetName.setText("Welcome " + currFullName + "!!!");
+        lblGreetName.setText("Welcome, " + currFullName + ".");
     }
 
     public void sortBy(String category, String avail) 

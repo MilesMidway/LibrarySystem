@@ -35,7 +35,7 @@ public class LibrarianBase extends main {
                 btnRegistryActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistry, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 220, -1));
+        getContentPane().add(btnRegistry, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 230, -1));
 
         btnBorrowMan.setBackground(new java.awt.Color(255, 255, 255));
         btnBorrowMan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Borrow Book_30px.png"))); // NOI18N
@@ -47,7 +47,7 @@ public class LibrarianBase extends main {
                 btnBorrowManActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBorrowMan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 240, 40));
+        getContentPane().add(btnBorrowMan, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 300, 40));
 
         btnViewer.setBackground(new java.awt.Color(255, 255, 255));
         btnViewer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/eye_20px.png"))); // NOI18N
@@ -59,7 +59,7 @@ public class LibrarianBase extends main {
                 btnViewerActionPerformed(evt);
             }
         });
-        getContentPane().add(btnViewer, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 240, 40));
+        getContentPane().add(btnViewer, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 240, 40));
 
         btnLogOut.setBackground(new java.awt.Color(32, 58, 67));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logout_14px.png"))); // NOI18N
@@ -71,7 +71,7 @@ public class LibrarianBase extends main {
                 btnLogOutActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, -1, -1));
+        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e58674891220df8a97807e636b99cd6c.gif"))); // NOI18N

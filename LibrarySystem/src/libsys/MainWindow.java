@@ -43,7 +43,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnLibrarian1ActionPerformed(evt);
             }
         });
-        panelRound1.add(btnLibrarian1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 150, 50));
+        panelRound1.add(btnLibrarian1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 170, 60));
 
         btnReader1.setBackground(new java.awt.Color(255, 255, 255));
         btnReader1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/reading_32px.png"))); // NOI18N
@@ -53,7 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnReader1ActionPerformed(evt);
             }
         });
-        panelRound1.add(btnReader1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, 150, 50));
+        panelRound1.add(btnReader1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 170, 70));
 
         btnAdmin1.setBackground(new java.awt.Color(255, 255, 255));
         btnAdmin1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/admin_settings_male_32px.png"))); // NOI18N
@@ -63,14 +63,14 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAdmin1ActionPerformed(evt);
             }
         });
-        panelRound1.add(btnAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 150, 50));
+        panelRound1.add(btnAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 520, 170, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/18sp-ourfuture-libraries-superJumbo.gif"))); // NOI18N
-        panelRound1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 1160, 720));
+        panelRound1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, -30, 1160, 800));
 
-        getContentPane().add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1060, -1));
+        getContentPane().add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, -20, 1160, 750));
 
-        pack();
+        setSize(new java.awt.Dimension(1061, 730));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -16,6 +16,7 @@ public class BookRegistry extends main {
     ImageInsert imageInsert= new ImageInsert();
     public BookRegistry() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
             
     @SuppressWarnings("unchecked")

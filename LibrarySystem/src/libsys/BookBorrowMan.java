@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +19,7 @@ public class BookBorrowMan extends main {
         borrowedTable.setDefaultEditor(Object.class, null);
         bgBorrower.add(rbBorrowing);
         bgBorrower.add(rbReturning);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private DefaultTableModel borrowTableModel;
@@ -32,17 +35,17 @@ public class BookBorrowMan extends main {
         panelGradient1 = new Panel_Gradient.PanelGradient();
         jScrollPane1 = new javax.swing.JScrollPane();
         borrowedTable = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         borrowTable = new javax.swing.JTable();
         rbBorrowing = new radio_button.RadioButtonCustom();
         rbReturning = new radio_button.RadioButtonCustom();
         btnAcceptBorrow = new Button_Gradient.ButtonGradient();
         btnDeny = new Button_Gradient.ButtonGradient();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -50,8 +53,8 @@ public class BookBorrowMan extends main {
             }
         });
 
-        panelGradient1.setBackground(new java.awt.Color(131, 96, 195));
-        panelGradient1.setColorGradient(new java.awt.Color(46, 191, 145));
+        panelGradient1.setBackground(new java.awt.Color(102, 255, 153));
+        panelGradient1.setColorGradient(new java.awt.Color(51, 255, 51));
 
         borrowedTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         borrowedTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -68,21 +71,22 @@ public class BookBorrowMan extends main {
         jScrollPane1.setViewportView(borrowedTable);
 
         panelGradient1.add(jScrollPane1);
-        jScrollPane1.setBounds(780, 260, 512, 663);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("BOOK BORROWING / RETURNING");
-        panelGradient1.add(jLabel3);
-        jLabel3.setBounds(20, 20, 690, 37);
+        jScrollPane1.setBounds(740, 70, 512, 610);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("BOOK BORROWED");
         panelGradient1.add(jLabel2);
-        jLabel2.setBounds(710, 20, 650, 37);
+        jLabel2.setBounds(660, 20, 650, 37);
+
+        jLabel3.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("BOOK BORROWING / RETURNING");
+        panelGradient1.add(jLabel3);
+        jLabel3.setBounds(70, 17, 690, 40);
 
         borrowTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         borrowTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,11 +108,11 @@ public class BookBorrowMan extends main {
         jScrollPane2.setViewportView(borrowTable);
 
         panelGradient1.add(jScrollPane2);
-        jScrollPane2.setBounds(150, 260, 505, 663);
+        jScrollPane2.setBounds(160, 70, 505, 610);
 
-        rbBorrowing.setBackground(new java.awt.Color(51, 51, 255));
+        rbBorrowing.setBackground(new java.awt.Color(102, 102, 102));
         rbBorrowing.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        rbBorrowing.setForeground(new java.awt.Color(255, 0, 0));
+        rbBorrowing.setForeground(new java.awt.Color(61, 31, 31));
         rbBorrowing.setText("Borrowing");
         rbBorrowing.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -116,10 +120,10 @@ public class BookBorrowMan extends main {
             }
         });
         panelGradient1.add(rbBorrowing);
-        rbBorrowing.setBounds(50, 370, 90, 19);
+        rbBorrowing.setBounds(20, 340, 120, 24);
 
-        rbReturning.setBackground(new java.awt.Color(51, 51, 255));
-        rbReturning.setForeground(new java.awt.Color(255, 0, 0));
+        rbReturning.setBackground(new java.awt.Color(69, 41, 41));
+        rbReturning.setForeground(new java.awt.Color(61, 42, 42));
         rbReturning.setText("Returning");
         rbReturning.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -127,12 +131,12 @@ public class BookBorrowMan extends main {
             }
         });
         panelGradient1.add(rbReturning);
-        rbReturning.setBounds(50, 400, 90, 23);
+        rbReturning.setBounds(20, 370, 120, 28);
 
-        btnAcceptBorrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/qweqewq.png"))); // NOI18N
+        btnAcceptBorrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add_14px_1.png"))); // NOI18N
         btnAcceptBorrow.setText("ACCEPT");
-        btnAcceptBorrow.setColor1(new java.awt.Color(24, 184, 10));
-        btnAcceptBorrow.setColor2(new java.awt.Color(13, 93, 142));
+        btnAcceptBorrow.setColor1(new java.awt.Color(63, 28, 28));
+        btnAcceptBorrow.setColor2(new java.awt.Color(75, 53, 53));
         btnAcceptBorrow.setSizeSpeed(0.5F);
         btnAcceptBorrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,12 +144,12 @@ public class BookBorrowMan extends main {
             }
         });
         panelGradient1.add(btnAcceptBorrow);
-        btnAcceptBorrow.setBounds(30, 460, 110, 60);
+        btnAcceptBorrow.setBounds(20, 250, 110, 60);
 
         btnDeny.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/remove_14px.png"))); // NOI18N
         btnDeny.setText("DENY");
-        btnDeny.setColor1(new java.awt.Color(24, 184, 10));
-        btnDeny.setColor2(new java.awt.Color(13, 93, 142));
+        btnDeny.setColor1(new java.awt.Color(64, 44, 44));
+        btnDeny.setColor2(new java.awt.Color(47, 30, 30));
         btnDeny.setSizeSpeed(0.5F);
         btnDeny.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,24 +157,57 @@ public class BookBorrowMan extends main {
             }
         });
         panelGradient1.add(btnDeny);
-        btnDeny.setBounds(30, 570, 110, 60);
+        btnDeny.setBounds(20, 440, 110, 60);
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edb8b3da20cdc65f496b6b4dc3fe463d.gif"))); // NOI18N
-        jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelGradient1.add(jLabel5);
-        jLabel5.setBounds(20, 20, 690, 190);
+        jPanel1.setBackground(new java.awt.Color(76, 39, 39));
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edb8b3da20cdc65f496b6b4dc3fe463d.gif"))); // NOI18N
-        jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelGradient1.add(jLabel4);
-        jLabel4.setBounds(710, 20, 650, 190);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1130, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3346817.jpg"))); // NOI18N
-        panelGradient1.add(jLabel1);
-        jLabel1.setBounds(20, 210, 1340, 730);
+        panelGradient1.add(jPanel1);
+        jPanel1.setBounds(140, 60, 1130, 650);
+
+        jPanel2.setBackground(new java.awt.Color(60, 31, 31));
+        jPanel2.setForeground(new java.awt.Color(58, 38, 38));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        panelGradient1.add(jPanel2);
+        jPanel2.setBounds(860, 10, 260, 50);
+
+        jPanel3.setBackground(new java.awt.Color(58, 34, 34));
+        jPanel3.setForeground(new java.awt.Color(79, 46, 46));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        panelGradient1.add(jPanel3);
+        jPanel3.setBounds(240, 10, 350, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,10 +217,11 @@ public class BookBorrowMan extends main {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            .addComponent(panelGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1290, 750));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -284,7 +322,7 @@ public class BookBorrowMan extends main {
     }//GEN-LAST:event_rbReturningItemStateChanged
 
     private void btnAcceptBorrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptBorrowActionPerformed
-       if (borrowTable.getSelectedRow() != -1) {
+        if (borrowTable.getSelectedRow() != -1) {
             try {
                 int selectedRow = borrowTable.getSelectedRow();
                 Object val = borrowTable.getValueAt(selectedRow, 2);
@@ -314,17 +352,16 @@ public class BookBorrowMan extends main {
                     updateRs.updateRow();
                 }
 
-                updateRs.close();
-                updateStmt.close();
                 refreshRsStmt("books");
                 updateBorrowedTable();
                 borrowTableModel.setRowCount(0);
 
-                updateRs.beforeFirst();
+                // Store data from ResultSet in a separate data structure
+                List<Object[]> resultSetData = new ArrayList<>();
                 while (updateRs.next()) {
                     availability = updateRs.getString("AVAILABILITY");
                     if (availability.equals("RETURNING") || availability.equals("BORROWING")) {
-                        borrowTableModel.addRow(new Object[]{
+                        resultSetData.add(new Object[]{
                             updateRs.getString("BORROWER"),
                             updateRs.getString("TITLE"),
                             updateRs.getInt("BOOKID"),
@@ -333,7 +370,16 @@ public class BookBorrowMan extends main {
                     }
                 }
 
+                // Use the stored data for subsequent iteration
+                for (Object[] rowData : resultSetData) {
+                    borrowTableModel.addRow(rowData);
+                }
+
                 bgBorrower.clearSelection();
+
+                // Close ResultSet and Statement
+                updateRs.close();
+                updateStmt.close();
             } catch (SQLException err) {
                 JOptionPane.showMessageDialog(null, "Error: " + err.getMessage());
             }
@@ -440,11 +486,11 @@ public class BookBorrowMan extends main {
     private javax.swing.JTable borrowedTable;
     private Button_Gradient.ButtonGradient btnAcceptBorrow;
     private Button_Gradient.ButtonGradient btnDeny;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private Panel_Gradient.PanelGradient panelGradient1;

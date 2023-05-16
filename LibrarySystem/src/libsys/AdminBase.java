@@ -124,7 +124,7 @@ public class AdminBase extends main {
                 btnEditActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 620, -1, -1));
+        kGradientPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 620, -1, -1));
 
         btnDelete.setBackground(new java.awt.Color(32, 58, 67));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/remove_14px.png"))); // NOI18N
@@ -136,7 +136,7 @@ public class AdminBase extends main {
                 btnDeleteActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 620, -1, -1));
+        kGradientPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 620, -1, -1));
 
         btnLogOut.setBackground(new java.awt.Color(32, 58, 67));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logout_14px.png"))); // NOI18N
@@ -148,7 +148,7 @@ public class AdminBase extends main {
                 btnLogOutActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 620, -1, -1));
+        kGradientPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 620, -1, -1));
 
         btnSearch.setBackground(new java.awt.Color(32, 58, 67));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search_14px.png"))); // NOI18N
@@ -160,7 +160,7 @@ public class AdminBase extends main {
                 btnSearchActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 620, -1, -1));
+        kGradientPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 620, -1, -1));
 
         randomNumber.setBackground(new java.awt.Color(32, 58, 67));
         randomNumber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/where_what_quest_14px.png"))); // NOI18N
@@ -172,7 +172,7 @@ public class AdminBase extends main {
                 randomNumberActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(randomNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 480, -1, -1));
+        kGradientPanel1.add(randomNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, -1, -1));
 
         mainTable.setModel(tblDataAccounts);
         mainTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -209,6 +209,7 @@ public class AdminBase extends main {
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3756077.jpg"))); // NOI18N
+        jLabel3.setOpaque(true);
         kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 780, 390));
         kGradientPanel1.add(fill1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 430, 40));
         kGradientPanel1.add(fill2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 430, 40));
@@ -386,74 +387,33 @@ public class AdminBase extends main {
             if (rs.next()) {
                 del = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this account?", 
                         "Confirmation", JOptionPane.YES_NO_OPTION);
-                if (del == 0) {
+                if (del == 0) 
+                {
                     boolean hasBorrowedBooks = checkBorrowedBooks(ids);
 
-                    if (hasBorrowedBooks) {
                         int confirm = JOptionPane.showConfirmDialog(null, "This account has borrowed books. Do you want to proceed with deletion?",
                                 "Confirmation", JOptionPane.YES_NO_OPTION);
-                        if (confirm == 0) {
-
+                        if (confirm == 0 && hasBorrowedBooks) 
+                        {
                             rs.deleteRow();
-
-                            JOptionPane.showMessageDialog(null, "Account has been deleted!");
-                          
-
+                            JOptionPane.showMessageDialog(null, "Account has been deleted!");                       
                             //int ids = randNumGen("accounts", "userid");
-
                             //txtUserId.setText(String.valueOf(ids));
-                            txtFullname.setText(null);
-                            txtPassword.setText(null);
-                            cbUserType.setSelectedIndex(0);
-                            txtFullname.setText(null);
-                            txtPassword.setText(null);
-
-                            btnAdd.setVisible(true);
-                            btnSave.setVisible(false);
-                            btnEdit.setVisible(false);
-                            btnDelete.setVisible(false);
-
-                            txtFullname.setEditable(true);
-                            txtPassword.setEditable(true);
-                            txtUserId.setEditable(true);
-
-                            cbUserType.setEnabled(true);
-                            randomNumber.setEnabled(true);
+                            updateBorrowedBooks(ids);
                             formWindowOpened(null);
                         }
-                    } else {
-                        
-                        rs.deleteRow();
-            
-                        JOptionPane.showMessageDialog(null, "Account has been deleted!");
-
-                        //int ids = randNumGen("accounts", "userid");
-
-                        //txtUserId.setText(String.valueOf(ids));
-                        txtFullname.setText(null);
-                        txtPassword.setText(null);
-                        cbUserType.setSelectedIndex(0);
-                        txtFullname.setText(null);
-                        txtPassword.setText(null);
-
-                        btnAdd.setVisible(true);
-                        btnSave.setVisible(false);
-                        btnEdit.setVisible(false);
-                        btnDelete.setVisible(false);
-
-                        txtFullname.setEditable(true);
-                        txtPassword.setEditable(true);
-                        txtUserId.setEditable(true);
-
-                        cbUserType.setEnabled(true);
-                        randomNumber.setEnabled(true);
-                        
-                        
-                        updateBorrowedBooks(ids);
-                        formWindowOpened(null);
-                    }
-                }
+                        else
+                        {
+                            rs.deleteRow();
+                            JOptionPane.showMessageDialog(null, "Account has been deleted!");
+                            //int ids = randNumGen("accounts", "userid");
+                            //txtUserId.setText(String.valueOf(ids));
+                            updateBorrowedBooks(ids);
+                            formWindowOpened(null);
+                        }
+                } 
             }
+   
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(AdminBase.this, err.getMessage());
         }
