@@ -56,6 +56,7 @@ public class LibrarianSignIn extends main {
 
         panelGradient1.setBackground(new java.awt.Color(168, 255, 120));
         panelGradient1.setColorGradient(new java.awt.Color(120, 255, 214));
+        panelGradient1.setPreferredSize(new java.awt.Dimension(1280, 720));
         panelGradient1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image_processing20190919-15480-14l7sg7.gif"))); // NOI18N
@@ -133,25 +134,26 @@ public class LibrarianSignIn extends main {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
-        panelGradient1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 90, 370, 540));
+        panelGradient1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 90, 370, 540));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1111111.png"))); // NOI18N
         btnBack.setText("Back");
-        btnBack.setColor1(new java.awt.Color(0, 51, 51));
-        btnBack.setColor2(new java.awt.Color(102, 0, 102));
+        btnBack.setColor1(new java.awt.Color(51, 255, 204));
+        btnBack.setColor2(new java.awt.Color(102, 255, 153));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        panelGradient1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 37));
+        panelGradient1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
 
         getContentPane().add(panelGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 720));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
      
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed

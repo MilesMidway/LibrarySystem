@@ -112,7 +112,7 @@ public class main extends javax.swing.JFrame {
         };
         for (JFrame jframe : jframeArr) {
             if (jframe.getClass().equals(sig.getClass())) {
-                //jframe.setSize(new java.awt.Dimension(1366, 768));
+                jframe.setSize(new java.awt.Dimension(1366, 768));
                 jframe.setLocationRelativeTo(null);
                 //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();  // adapt to machinee's screen size
                 //jframe1.setSize(screenSize.width, screenSize.height); // set size to screen size
@@ -272,4 +272,3 @@ public class main extends javax.swing.JFrame {
     }
     
 }
-

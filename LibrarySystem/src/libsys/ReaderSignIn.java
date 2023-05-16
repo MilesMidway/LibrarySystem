@@ -28,19 +28,19 @@ public class ReaderSignIn extends main {
         jLabel7 = new javax.swing.JLabel();
         txtLogName = new textfield.TextField();
         txtLogPass = new textfield.PasswordField();
-        btnConfirm = new Button_Gradient.ButtonGradient();
+        btnCreate = new Button_Gradient.ButtonGradient();
         btnCreateAcc = new Button_Gradient.ButtonGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kGradientPanel1.setkEndColor(new java.awt.Color(31, 158, 230));
-        kGradientPanel1.setkStartColor(new java.awt.Color(206, 81, 234));
+        kGradientPanel1.setkEndColor(new java.awt.Color(255, 51, 51));
+        kGradientPanel1.setkStartColor(new java.awt.Color(153, 0, 51));
         kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/library.png"))); // NOI18N
-        kGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 840, 630));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image_processing20200810-29265-bud3le.gif"))); // NOI18N
+        kGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 750, 630));
 
         btnBack.setBackground(new java.awt.Color(0, 0, 0));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back_20px.png"))); // NOI18N
@@ -60,7 +60,7 @@ public class ReaderSignIn extends main {
         panelRound1.setRoundTopRight(25);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel4.setForeground(new java.awt.Color(255, 153, 153));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Welcome Back");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -72,30 +72,34 @@ public class ReaderSignIn extends main {
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Downloads\\library_64px.png")); // NOI18N
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Don't have account?");
 
         txtLogName.setLabelText("User Name");
+        txtLogName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLogNameActionPerformed(evt);
+            }
+        });
 
         txtLogPass.setLabelText("Confirm Password");
         txtLogPass.setShowAndHide(true);
 
-        btnConfirm.setBackground(new java.awt.Color(0, 0, 0));
-        btnConfirm.setText("LOGIN");
-        btnConfirm.setColor1(new java.awt.Color(31, 158, 230));
-        btnConfirm.setColor2(new java.awt.Color(206, 81, 234));
-        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
+        btnCreate.setBackground(new java.awt.Color(0, 0, 0));
+        btnCreate.setText("LOGIN");
+        btnCreate.setColor1(new java.awt.Color(255, 51, 51));
+        btnCreate.setColor2(new java.awt.Color(153, 0, 51));
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmActionPerformed(evt);
+                btnCreateActionPerformed(evt);
             }
         });
 
         btnCreateAcc.setBackground(new java.awt.Color(255, 255, 255));
         btnCreateAcc.setText("CREATE ACCOUNT");
-        btnCreateAcc.setColor1(new java.awt.Color(206, 81, 234));
-        btnCreateAcc.setColor2(new java.awt.Color(31, 158, 230));
+        btnCreateAcc.setColor1(new java.awt.Color(255, 51, 51));
+        btnCreateAcc.setColor2(new java.awt.Color(153, 0, 51));
         btnCreateAcc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateAccActionPerformed(evt);
@@ -110,14 +114,14 @@ public class ReaderSignIn extends main {
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
-                .addGap(0, 78, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtLogPass, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtLogName, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(17, 17, 17)
@@ -138,7 +142,7 @@ public class ReaderSignIn extends main {
                 .addGap(18, 18, 18)
                 .addComponent(txtLogPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,15 +150,15 @@ public class ReaderSignIn extends main {
                 .addGap(62, 62, 62))
         );
 
-        kGradientPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 90, -1, -1));
+        kGradientPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, 440, -1));
 
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1420, 710));
+        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 710));
 
-        setSize(new java.awt.Dimension(1438, 746));
+        setSize(new java.awt.Dimension(1296, 748));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
      
-    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         databaseConnect("accounts");
         
         usiFullName = txtLogName.getText();
@@ -164,9 +168,8 @@ public class ReaderSignIn extends main {
             signIn(usiFullName, usiPass, "READER", txtLogName, txtLogPass);
         } catch (Exception ex) {
             Logger.getLogger(ReaderSignIn.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
         }
-    }//GEN-LAST:event_btnConfirmActionPerformed
+    }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnCreateAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccActionPerformed
         this.dispose();
@@ -178,9 +181,13 @@ public class ReaderSignIn extends main {
         main.sendDisplaySignal(new MainWindow()); // <--- It goes back to
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void txtLogNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLogNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLogNameActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Button_Gradient.ButtonGradient btnBack;
-    private Button_Gradient.ButtonGradient btnConfirm;
+    private Button_Gradient.ButtonGradient btnCreate;
     private Button_Gradient.ButtonGradient btnCreateAcc;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

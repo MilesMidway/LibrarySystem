@@ -50,7 +50,7 @@ public class BookViewer extends main {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelRound1.setBackground(new java.awt.Color(204, 204, 255));
+        panelRound1.setBackground(new java.awt.Color(255, 255, 255));
         panelRound1.setRoundBottomLeft(50);
         panelRound1.setRoundBottomRight(50);
         panelRound1.setRoundTopLeft(50);
@@ -153,6 +153,7 @@ public class BookViewer extends main {
         ImageLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelRound1.add(ImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 23, 254, 335));
 
+        btnEdit.setBackground(new java.awt.Color(255, 204, 0));
         btnEdit.setForeground(new java.awt.Color(0, 0, 0));
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/edit_30px.png"))); // NOI18N
         btnEdit.setText("Edit");
@@ -163,7 +164,7 @@ public class BookViewer extends main {
                 btnEditActionPerformed(evt);
             }
         });
-        panelRound1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 78, 130, 37));
+        panelRound1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, 130, 37));
 
         btnBorrow.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Borrow Book_30px.png"))); // NOI18N
@@ -178,7 +179,7 @@ public class BookViewer extends main {
         panelRound1.add(btnBorrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 23, 130, 37));
 
         lblOneBook.setText("You can only borrow one book at a time.");
-        panelRound1.add(lblOneBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 200, 30));
+        panelRound1.add(lblOneBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 250, 30));
 
         getContentPane().add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 860, 530));
 

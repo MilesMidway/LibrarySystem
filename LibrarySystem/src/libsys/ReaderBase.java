@@ -48,7 +48,6 @@ public class ReaderBase extends main {
         btnSearch = new Button_Gradient.ButtonGradient();
         btnViewBook = new Button_Gradient.ButtonGradient();
         btnLogOut = new Button_Gradient.ButtonGradient();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
@@ -63,9 +62,9 @@ public class ReaderBase extends main {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 67, 840, 60));
+        jPanel1.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 850, 60));
 
-        lblGreetName.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 18)); // NOI18N
+        lblGreetName.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         lblGreetName.setForeground(new java.awt.Color(255, 255, 255));
         lblGreetName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGreetName.setText("Welcome!!!");
@@ -73,7 +72,7 @@ public class ReaderBase extends main {
         jPanel1.add(lblGreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 279, 32));
 
         cbGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Genre", " " }));
-        jPanel1.add(cbGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 320, 102, 32));
+        jPanel1.add(cbGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 230, 102, 32));
 
         cbAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unavailable / Available", "" }));
         jPanel1.add(cbAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, -1, 31));
@@ -93,10 +92,10 @@ public class ReaderBase extends main {
         });
         jScrollPane1.setViewportView(mainTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 850, 286));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 850, 286));
 
         cbCending.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ascending", " " }));
-        jPanel1.add(cbCending, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 320, 87, 32));
+        jPanel1.add(cbCending, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 87, 32));
 
         rbAuthor.setBackground(new java.awt.Color(255, 51, 51));
         rbAuthor.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,33 +128,30 @@ public class ReaderBase extends main {
         btnViewBook.setForeground(new java.awt.Color(0, 0, 0));
         btnViewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/view_20px.png"))); // NOI18N
         btnViewBook.setText("View");
-        btnViewBook.setColor1(new java.awt.Color(255, 255, 255));
-        btnViewBook.setColor2(new java.awt.Color(15, 255, 238));
+        btnViewBook.setColor1(new java.awt.Color(102, 102, 102));
+        btnViewBook.setColor2(new java.awt.Color(102, 102, 102));
         btnViewBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBookActionPerformed(evt);
             }
         });
-        jPanel1.add(btnViewBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 400, 100, 30));
+        jPanel1.add(btnViewBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 420, 110, 40));
 
         btnLogOut.setBackground(new java.awt.Color(32, 58, 67));
         btnLogOut.setForeground(new java.awt.Color(0, 0, 0));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Logout Rounded_25px.png"))); // NOI18N
         btnLogOut.setText("Logout");
-        btnLogOut.setColor1(new java.awt.Color(255, 255, 255));
-        btnLogOut.setColor2(new java.awt.Color(15, 255, 238));
+        btnLogOut.setColor1(new java.awt.Color(102, 102, 102));
+        btnLogOut.setColor2(new java.awt.Color(102, 102, 102));
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOutActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 520, 110, 40));
+        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, 110, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/particlesjs-examples (1).gif"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 200));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3346817.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 1120, 440));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/librarrtt.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -50, 1120, 680));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 11, 1120, 640));
 
@@ -199,11 +195,7 @@ public class ReaderBase extends main {
                 refreshRsStmt("accounts");
             } catch (SQLException err) {
                 System.out.println(err.getMessage());
-            } finally {
-                closeResultSet(rs);
-                closeStatement(stmt);
-                closeConnection();
-        }   
+        }
     }//GEN-LAST:event_btnViewBookActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
@@ -499,7 +491,6 @@ public class ReaderBase extends main {
     private javax.swing.JComboBox<String> cbAvail;
     private javax.swing.JComboBox<String> cbCending;
     private javax.swing.JComboBox<String> cbGenre;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
