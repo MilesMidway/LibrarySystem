@@ -4,7 +4,7 @@ import java.util.*;
 import java.awt.dnd.*;
 import java.awt.datatransfer.*;
 import java.io.*;
-import libsys.AdminBase;
+
 
 
 public class ImageInsert implements DropTargetListener{

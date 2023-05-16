@@ -11,21 +11,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BookViewer extends main {
-
     public BookViewer() {
         initComponents();
         lblOneBook.setVisible(false);
-        //System.out.println("test");
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
     String title, author, genre, date, synopsis, imagesrc, availability;
     int borrower;
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        ImageLabel = new javax.swing.JLabel();
+        panelRound1 = new Panel_Gradient.PanelRound();
         Availability_label = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -38,34 +36,47 @@ public class BookViewer extends main {
         Author_label = new javax.swing.JLabel();
         Genre_label = new javax.swing.JLabel();
         Date_label = new javax.swing.JLabel();
+        ImageLabel = new javax.swing.JLabel();
+        btnEdit = new Button_Gradient.ButtonGradient();
+        btnBorrow = new Button_Gradient.ButtonGradient();
         lblOneBook = new javax.swing.JLabel();
-        btnEdit = new javax.swing.JButton();
-        btnBorrow = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        ImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ImageLabel.setText("Book Cover");
-        ImageLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelRound1.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound1.setRoundBottomLeft(50);
+        panelRound1.setRoundBottomRight(50);
+        panelRound1.setRoundTopLeft(50);
+        panelRound1.setRoundTopRight(50);
+        panelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Availability_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Availability_label.setText("AVAILABLE");
+        panelRound1.add(Availability_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 419, 90, -1));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("AUTHOR:");
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("GENRE:");
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("TITLE: ");
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("DATE:");
         jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -73,7 +84,6 @@ public class BookViewer extends main {
         Synopsis_label.setColumns(20);
         Synopsis_label.setLineWrap(true);
         Synopsis_label.setRows(5);
-        Synopsis_label.setWrapStyleWord(true);
         jScrollPane1.setViewportView(Synopsis_label);
 
         Title_label.setText("jLabel3");
@@ -84,34 +94,32 @@ public class BookViewer extends main {
 
         Date_label.setText("jLabel3");
 
-        lblOneBook.setText("You can only borrow one book at a time.");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Title_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(47, 47, 47))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Author_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 12, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblOneBook)
-                                .addGap(25, 25, 25))
-                            .addComponent(Genre_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Date_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(Date_label, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Title_label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Author_label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Genre_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -119,148 +127,73 @@ public class BookViewer extends main {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Title_label))
+                    .addComponent(Title_label, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Author_label))
-                    .addComponent(lblOneBook, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Genre_label))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Author_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Genre_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Date_label))
-                .addGap(13, 13, 13)
+                    .addComponent(Date_label, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(1, 1, 1))
         );
 
+        panelRound1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 23, -1, 490));
+
+        ImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ImageLabel.setText("Book Cover");
+        ImageLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelRound1.add(ImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 23, 254, 335));
+
+        btnEdit.setBackground(new java.awt.Color(255, 204, 0));
+        btnEdit.setForeground(new java.awt.Color(0, 0, 0));
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/edit_30px.png"))); // NOI18N
         btnEdit.setText("Edit");
+        btnEdit.setColor1(new java.awt.Color(120, 255, 214));
+        btnEdit.setColor2(new java.awt.Color(168, 255, 120));
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
+        panelRound1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, 130, 37));
 
+        btnBorrow.setForeground(new java.awt.Color(0, 0, 0));
+        btnBorrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Borrow Book_30px.png"))); // NOI18N
         btnBorrow.setText("Borrow");
+        btnBorrow.setColor1(new java.awt.Color(120, 255, 214));
+        btnBorrow.setColor2(new java.awt.Color(168, 255, 120));
         btnBorrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrowActionPerformed(evt);
             }
         });
+        panelRound1.add(btnBorrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 23, 130, 37));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(Availability_label, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                    .addComponent(btnBorrow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
-                .addGap(55, 55, 55))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(61, 61, 61)
-                                .addComponent(Availability_label))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBorrow, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        lblOneBook.setText("You can only borrow one book at a time.");
+        panelRound1.add(lblOneBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 250, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 860, 530));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/199139574.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 590));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         this.dispose();
         sendDisplaySignal(new BookEditor());
     }//GEN-LAST:event_btnEditActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        updateView(); 
-        databaseConnect("books"); 
-        try {
-            
-            if(alreadyBorrowed()){
-                if(!sameID()){
-                lblOneBook.setVisible(true);
-                btnBorrow.setEnabled(false);
-                }
-            }
-            rs = stmt.executeQuery("SELECT * FROM BOOKS WHERE BOOKID = " + currBookID);
-            while (rs.next()) {
-                title = rs.getString("TITLE");
-                author = rs.getString("AUTHOR");
-                genre = rs.getString("GENRE");
-                date = rs.getString("DATE");
-                synopsis = rs.getString("SYNOPSIS");
-                imagesrc = rs.getString("IMAGE");
-                availability = rs.getString("AVAILABILITY");
-                Title_label.setText(title);
-                Author_label.setText(author);
-                Genre_label.setText(genre);
-                Date_label.setText(date);
-                Synopsis_label.setText(synopsis);
-                Availability_label.setText(availability);
-
-                BufferedImage img = null;
-                try {
-                    img = ImageIO.read(new File(imagesrc));
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-                Image dimg = img.getScaledInstance(ImageLabel.getWidth(), ImageLabel.getHeight(),
-                        Image.SCALE_SMOOTH);
-
-                ImageIcon icon = new ImageIcon(dimg);
-                ImageLabel.setText(null);
-                ImageLabel.setIcon(icon);
-            }
-        } catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }
-    }//GEN-LAST:event_formWindowOpened
 
     private void btnBorrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrowActionPerformed
         databaseConnect("books");
@@ -332,10 +265,55 @@ public class BookViewer extends main {
                     System.out.println(err);
                 }
             }
-        }         
+        } 
     }//GEN-LAST:event_btnBorrowActionPerformed
-    
-    public static JButton hideBorrow()
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        updateView(); 
+        databaseConnect("books"); 
+        try {
+            
+            if(alreadyBorrowed()){
+                if(!sameID()){
+                lblOneBook.setVisible(true);
+                btnBorrow.setEnabled(false);
+                }
+            }
+            rs = stmt.executeQuery("SELECT * FROM BOOKS WHERE BOOKID = " + currBookID);
+            while (rs.next()) {
+                title = rs.getString("TITLE");
+                author = rs.getString("AUTHOR");
+                genre = rs.getString("GENRE");
+                date = rs.getString("DATE");
+                synopsis = rs.getString("SYNOPSIS");
+                imagesrc = rs.getString("IMAGE");
+                availability = rs.getString("AVAILABILITY");
+                Title_label.setText(title);
+                Author_label.setText(author);
+                Genre_label.setText(genre);
+                Date_label.setText(date);
+                Synopsis_label.setText(synopsis);
+                Availability_label.setText(availability);
+
+                BufferedImage img = null;
+                try {
+                    img = ImageIO.read(new File(imagesrc));
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                Image dimg = img.getScaledInstance(ImageLabel.getWidth(), ImageLabel.getHeight(),
+                        Image.SCALE_SMOOTH);
+
+                ImageIcon icon = new ImageIcon(dimg);
+                ImageLabel.setText(null);
+                ImageLabel.setIcon(icon);
+            }
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+     public static JButton hideBorrow()
     {
         return btnBorrow;
     }
@@ -390,7 +368,6 @@ public class BookViewer extends main {
         return bookid == currBookID;
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Author_label;
     private javax.swing.JLabel Availability_label;
@@ -399,15 +376,16 @@ public class BookViewer extends main {
     private javax.swing.JLabel ImageLabel;
     private javax.swing.JTextArea Synopsis_label;
     private javax.swing.JLabel Title_label;
-    private static javax.swing.JButton btnBorrow;
-    private static javax.swing.JButton btnEdit;
+    private static Button_Gradient.ButtonGradient btnBorrow;
+    private static Button_Gradient.ButtonGradient btnEdit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblOneBook;
+    private Panel_Gradient.PanelRound panelRound1;
     // End of variables declaration//GEN-END:variables
 }

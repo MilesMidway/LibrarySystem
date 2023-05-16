@@ -24,7 +24,7 @@ public class ReaderBase extends main {
         setGuiBase();
         setPersonalization();
     }
-    
+
     private DefaultTableModel bookTableModel;
     private final String[] DEFAULT_COLUMNS = {"TITLE", "AUTHOR", "GENRE", "DATE", "BOOKID"};
 
@@ -36,21 +36,19 @@ public class ReaderBase extends main {
         bgCategories = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
-        lblSlogan = new javax.swing.JLabel();
-        rbTitle = new javax.swing.JRadioButton();
-        rbAuthor = new javax.swing.JRadioButton();
-        rbDate = new javax.swing.JRadioButton();
+        lblGreetName = new javax.swing.JLabel();
         cbGenre = new javax.swing.JComboBox<>();
         cbAvail = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         mainTable = new javax.swing.JTable();
         cbCending = new javax.swing.JComboBox<>();
-        btnViewBook = new javax.swing.JButton();
-        btnLogOut = new javax.swing.JButton();
-        btnClear = new javax.swing.JButton();
-        lblGreetName = new javax.swing.JLabel();
-        lblLibraryName = new javax.swing.JLabel();
+        rbAuthor = new radio_button.RadioButtonCustom();
+        rbTitle = new radio_button.RadioButtonCustom();
+        rbDate = new radio_button.RadioButtonCustom();
+        btnSearch = new Button_Gradient.ButtonGradient();
+        btnViewBook = new Button_Gradient.ButtonGradient();
+        btnLogOut = new Button_Gradient.ButtonGradient();
+        jLabel2 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -60,37 +58,24 @@ public class ReaderBase extends main {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 850, 32));
+        jPanel1.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 850, 60));
 
-        btnSearch.setText("Search!");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
-
-        lblSlogan.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblSlogan.setText("Read, life better, and reading life better");
-        jPanel1.add(lblSlogan, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 80, 510, 30));
-
-        rbTitle.setText("Title");
-        jPanel1.add(rbTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 190, -1, -1));
-
-        rbAuthor.setText("Author");
-        jPanel1.add(rbAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 250, -1, -1));
-
-        rbDate.setText("Publication Date");
-        jPanel1.add(rbDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 310, -1, -1));
+        lblGreetName.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        lblGreetName.setForeground(new java.awt.Color(255, 255, 255));
+        lblGreetName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGreetName.setText("Welcome!!!");
+        lblGreetName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(lblGreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 279, 32));
 
         cbGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Genre", " " }));
-        jPanel1.add(cbGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 380, 90, -1));
+        jPanel1.add(cbGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 230, 102, 32));
 
-        cbAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unavailable / Available", " " }));
-        jPanel1.add(cbAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 190, -1, -1));
+        cbAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unavailable / Available", "" }));
+        jPanel1.add(cbAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, -1, 31));
 
         mainTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,62 +92,83 @@ public class ReaderBase extends main {
         });
         jScrollPane1.setViewportView(mainTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 850, 486));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 850, 286));
 
         cbCending.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ascending", " " }));
-        jPanel1.add(cbCending, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 310, -1, -1));
+        jPanel1.add(cbCending, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 87, 32));
 
-        btnViewBook.setText("View selected book");
+        rbAuthor.setBackground(new java.awt.Color(255, 51, 51));
+        rbAuthor.setForeground(new java.awt.Color(255, 255, 255));
+        rbAuthor.setText("Author");
+        jPanel1.add(rbAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 70, -1));
+
+        rbTitle.setBackground(new java.awt.Color(255, 51, 51));
+        rbTitle.setForeground(new java.awt.Color(255, 255, 255));
+        rbTitle.setText("Title");
+        jPanel1.add(rbTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+
+        rbDate.setBackground(new java.awt.Color(255, 51, 51));
+        rbDate.setForeground(new java.awt.Color(255, 255, 255));
+        rbDate.setText("Publication Date");
+        jPanel1.add(rbDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 110, -1));
+
+        btnSearch.setBackground(new java.awt.Color(32, 58, 67));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search_25px.png"))); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.setColor1(new java.awt.Color(32, 58, 67));
+        btnSearch.setColor2(new java.awt.Color(32, 58, 67));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, 30));
+
+        btnViewBook.setBackground(new java.awt.Color(32, 58, 67));
+        btnViewBook.setForeground(new java.awt.Color(0, 0, 0));
+        btnViewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/view_20px.png"))); // NOI18N
+        btnViewBook.setText("View");
+        btnViewBook.setColor1(new java.awt.Color(102, 102, 102));
+        btnViewBook.setColor2(new java.awt.Color(102, 102, 102));
         btnViewBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBookActionPerformed(evt);
             }
         });
-        jPanel1.add(btnViewBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
+        jPanel1.add(btnViewBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 420, 110, 40));
 
-        btnLogOut.setText("Log out");
+        btnLogOut.setBackground(new java.awt.Color(32, 58, 67));
+        btnLogOut.setForeground(new java.awt.Color(0, 0, 0));
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Logout Rounded_25px.png"))); // NOI18N
+        btnLogOut.setText("Logout");
+        btnLogOut.setColor1(new java.awt.Color(102, 102, 102));
+        btnLogOut.setColor2(new java.awt.Color(102, 102, 102));
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOutActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 530, -1, -1));
+        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, 110, 40));
 
-        btnClear.setText("Clear");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 130, 90, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/librarrtt.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -50, 1120, 680));
 
-        lblGreetName.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        lblGreetName.setText("Welcome");
-        jPanel1.add(lblGreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 279, -1));
-
-        lblLibraryName.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
-        lblLibraryName.setText("Sane Library");
-        jPanel1.add(lblLibraryName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 520, 60));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 11, 1120, 640));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private void mainTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTableMouseClicked
+        int selectedRow = mainTable.getSelectedRow();
+        if (selectedRow != -1) {
+            Object val = mainTable.getValueAt(selectedRow, 4);
+            currBookID = Integer.parseInt(val.toString());
+            // refreshRsStmt("books");
+            // System.out.println(currBookID);
+        }
+    }//GEN-LAST:event_mainTableMouseClicked
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         databaseConnect("books");
@@ -189,11 +195,7 @@ public class ReaderBase extends main {
                 refreshRsStmt("accounts");
             } catch (SQLException err) {
                 System.out.println(err.getMessage());
-            } finally {
-                closeResultSet(rs);
-                closeStatement(stmt);
-                closeConnection();
-        }   
+        }
     }//GEN-LAST:event_btnViewBookActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
@@ -201,23 +203,9 @@ public class ReaderBase extends main {
         sendCloseSignal(new BookViewer());
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void mainTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTableMouseClicked
-        int selectedRow = mainTable.getSelectedRow();
-        if (selectedRow != -1) {
-            Object val = mainTable.getValueAt(selectedRow, 4);
-            currBookID = Integer.parseInt(val.toString());
-            // refreshRsStmt("books");
-            // System.out.println(currBookID);
-        }
-    }//GEN-LAST:event_mainTableMouseClicked
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         initialSearch();
     }//GEN-LAST:event_formWindowOpened
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        btnClear.setText(null);
-    }//GEN-LAST:event_btnClearActionPerformed
 
     public void allAddBook(String[] bookData) throws Exception 
     {
@@ -492,25 +480,26 @@ public class ReaderBase extends main {
         return openJFrames;
     }
 
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgCategories;
-    private javax.swing.JButton btnClear;
-    public javax.swing.JButton btnLogOut;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnViewBook;
+    public Button_Gradient.ButtonGradient btnLogOut;
+    private Button_Gradient.ButtonGradient btnSearch;
+    private Button_Gradient.ButtonGradient btnViewBook;
     private javax.swing.JComboBox<String> cbAvail;
     private javax.swing.JComboBox<String> cbCending;
     private javax.swing.JComboBox<String> cbGenre;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblGreetName;
-    private javax.swing.JLabel lblLibraryName;
-    private javax.swing.JLabel lblSlogan;
     private javax.swing.JTable mainTable;
-    private javax.swing.JRadioButton rbAuthor;
-    private javax.swing.JRadioButton rbDate;
-    private javax.swing.JRadioButton rbTitle;
+    private radio_button.RadioButtonCustom rbAuthor;
+    private radio_button.RadioButtonCustom rbDate;
+    private radio_button.RadioButtonCustom rbTitle;
     private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }

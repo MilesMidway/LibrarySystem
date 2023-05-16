@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/LibrarianBase.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/BookViewer.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/ReaderBase.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/MainWindow.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/BookEditor.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/LibrarianSignIn.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/BookBorrowMan.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/AdminBase.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/BookRegistry.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/ReaderSignUp.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/ImageInsert.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/ReaderSignIn.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/AdminSignIn.java</file>
-            <file>file:/home/clezentine/NetBeansProjects/LibrarySystem/LibrarySystem/src/libsys/main.java</file>
+            <file>file:/C:/Users/MM/Documents/GitHub/LibrarySystem-main/LibrarySystem/src/libsys/main.java</file>
+            <file>file:/C:/Users/MM/Documents/GitHub/LibrarySystem-main/LibrarySystem/src/libsys/BookBorrowMan.java</file>
+            <file>file:/C:/Users/MM/Documents/GitHub/LibrarySystem-main/LibrarySystem/src/libsys/LibrarianBase.java</file>
+            <file>file:/C:/Users/MM/Documents/GitHub/LibrarySystem-main/LibrarySystem/src/libsys/ReaderBase.java</file>
+            <file>file:/C:/Users/MM/Documents/GitHub/LibrarySystem-main/LibrarySystem/src/libsys/BookViewer.java</file>
+            <file>file:/C:/Users/MM/Documents/GitHub/LibrarySystem-main/LibrarySystem/src/libsys/LibrarianSignIn.java</file>
         </group>
     </open-files>
 </project-private>
