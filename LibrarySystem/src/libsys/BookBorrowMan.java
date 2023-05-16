@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -345,58 +347,65 @@ public class BookBorrowMan extends main {
 
     private void btnDenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDenyActionPerformed
         if (borrowTable.getSelectedRow() != -1) {
-            try {
-                int selectedRow = borrowTable.getSelectedRow();
-                Object val = borrowTable.getValueAt(selectedRow, 2);
-                borrBookID = Integer.parseInt(val.toString());
+           try {
+               int selectedRow = borrowTable.getSelectedRow();
+               Object val = borrowTable.getValueAt(selectedRow, 2);
+               borrBookID = Integer.parseInt(val.toString());
 
-                String availability = null;
-                Statement updateStmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                ResultSet updateRs = updateStmt.executeQuery("SELECT * FROM BOOKS WHERE BOOKID = " + borrBookID);
+               String availability = null;
+               Statement updateStmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+               ResultSet updateRs = updateStmt.executeQuery("SELECT * FROM BOOKS WHERE BOOKID = " + borrBookID);
 
-                while (updateRs.next()) {
-                    availability = updateRs.getString("AVAILABILITY");
-                    if (availability.equals("BORROWING")) {
-                        availability = "AVAILABLE";
-                    } else if (availability.equals("RETURNING")) {
-                        availability = "BORROWED";
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Book Overdue. Please handle the case for overdue books.");
-                    }
+               if (updateRs.next()) {
+                   Date localNow = Date.valueOf(LocalDate.now());
+                   Date bookDue = updateRs.getDate("DUEDATE");
+                   long diff_of_dates = dateDiff(bookDue, localNow);
+                   availability = updateRs.getString("AVAILABILITY");
 
-                    updateRs.updateString("AVAILABILITY", availability);
-                    updateRs.updateRow();
-                }
+                   if (availability.equals("BORROWING")) {
+                       availability = "BORROWED";
+                   } else if (availability.equals("RETURNING") && (diff_of_dates >= 0)) {
+                       availability = "AVAILABLE";
+                       updateRs.updateNull("BORROWER");
+                       updateRs.updateNull("DUEDATE");
+                   } else {
+                       JOptionPane.showMessageDialog(null, "Book Overdue. Please handle the case for overdue books.");
+                   }
 
-                updateRs.close();
-                updateStmt.close();
-                refreshRsStmt("books");
-                updateBorrowedTable();
-                borrowTableModel.setRowCount(0);
+                   updateRs.updateString("AVAILABILITY", availability);
+                   updateRs.updateRow();
+               }
 
-                Statement selectStmt = con.createStatement();
-                ResultSet selectRs = selectStmt.executeQuery("SELECT * FROM BOOKS");
+               refreshRsStmt("books");
+               updateBorrowedTable();
+               borrowTableModel.setRowCount(0);
 
-                while (selectRs.next()) {
-                    availability = selectRs.getString("AVAILABILITY");
-                    if (availability.equals("RETURNING") || availability.equals("BORROWING")) {
-                        borrowTableModel.addRow(new Object[]{
-                            selectRs.getString("BORROWER"),
-                            selectRs.getString("TITLE"),
-                            selectRs.getInt("BOOKID"),
-                            availability
-                        });
-                    }
-                }
+               List<Object[]> resultSetData = new ArrayList<>();
+               while (updateRs.next()) {
+                   availability = updateRs.getString("AVAILABILITY");
+                   if (availability.equals("RETURNING") || availability.equals("BORROWING")) {
+                       resultSetData.add(new Object[]{
+                           updateRs.getString("BORROWER"),
+                           updateRs.getString("TITLE"),
+                           updateRs.getInt("BOOKID"),
+                           availability
+                       });
+                   }
+               }
 
-                selectRs.close();
-                selectStmt.close();
-                bgBorrower.clearSelection();
-            } catch (SQLException err) {
-                JOptionPane.showMessageDialog(null, "Error: " + err.getMessage());
-            }
-        }
-    
+               for (Object[] rowData : resultSetData) {
+                   borrowTableModel.addRow(rowData);
+               }
+
+               bgBorrower.clearSelection();
+
+               // Close ResultSet and Statement
+               updateRs.close();
+               updateStmt.close();
+           } catch (SQLException err) {
+               JOptionPane.showMessageDialog(null, "Error: " + err.getMessage());
+           }
+       }
     }//GEN-LAST:event_btnDenyActionPerformed
 
     public void updateBorrowedTable() throws SQLException {
