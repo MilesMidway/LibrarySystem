@@ -87,6 +87,7 @@ public class AdminBase extends main {
         kGradientPanel1.add(txtUserId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 430, -1));
 
         cbUserType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "READER", "LIBRARIAN", "ADMIN" }));
+        cbUserType.setSelectedItem("READER");
         cbUserType.setLabeText("User Type:");
         kGradientPanel1.add(cbUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, 430, -1));
 
@@ -176,9 +177,6 @@ public class AdminBase extends main {
 
         mainTable.setModel(tblDataAccounts);
         mainTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mainTableMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 mainTableMousePressed(evt);
             }
@@ -247,8 +245,6 @@ public class AdminBase extends main {
     }//GEN-LAST:event_formWindowOpened
       
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        int ids = Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 
-             0).toString());
         aFullname = txtFullname.getText();
         aPassword = txtPassword.getText();
         aUserType = String.valueOf(cbUserType.getSelectedItem());
@@ -264,7 +260,7 @@ public class AdminBase extends main {
                 }
                 if (txtUserId.getText().isEmpty()) {
                     fill3.setBorder(BorderFactory.createLineBorder(Color.red));
-                }                
+                }
             }
             else if(lessthanLength(10, txtFullname) || lessthanLength(8, txtPassword)) {
                 if(lessthanLength(10, txtFullname)){
@@ -287,8 +283,8 @@ public class AdminBase extends main {
                 if (!b) {
                     JOptionPane.showMessageDialog(null, "The account has been updated!");
 
-                    txtFullname.setText(null);
-                    txtPassword.setText(null);
+                    txtFullname.setText("");
+                    txtPassword.setText("");
                     cbUserType.setSelectedIndex(0);
 
                     btnAdd.setVisible(true);
@@ -311,7 +307,7 @@ public class AdminBase extends main {
         aUserType = String.valueOf(cbUserType.getSelectedItem());
         
         try {
-            if (aFullname.isEmpty() || aPassword.isEmpty() || txtUserId.getText().isEmpty()) {
+            if (aFullname.isEmpty() || aPassword.isEmpty() || txtUserId.getText().isEmpty() ) {
                 JOptionPane.showMessageDialog(null, "Fill in the blanks.");
                 if (aFullname.isEmpty()) {
                     fill1.setBorder(BorderFactory.createLineBorder(Color.red));
@@ -321,9 +317,9 @@ public class AdminBase extends main {
                 }
                 if (txtUserId.getText().isEmpty()) {
                     fill3.setBorder(BorderFactory.createLineBorder(Color.red));
-                }                
+                }
             }
-            else if(lessthanLength(10, txtFullname) || lessthanLength(8, txtPassword)) {
+            else if(lessthanLength(10, txtFullname) || lessthanLength(8, txtPassword) || (cbUserType.getSelectedIndex()== -1)) {
                 if(lessthanLength(10, txtFullname)){
                     fill1.setBorder(BorderFactory.createLineBorder(Color.red));
                     JOptionPane.showMessageDialog(null, "Name less than 10 characters.");
@@ -335,7 +331,10 @@ public class AdminBase extends main {
                 if(lessthanLength(10, txtFullname) && lessthanLength(8,txtPassword)){
                     fill3.setBorder(BorderFactory.createLineBorder(Color.red));
                     JOptionPane.showMessageDialog(null, "Name length less than 10 characters, Password length less than 8 characters.");
-                }                
+                }       
+                if (cbUserType.getSelectedIndex()== -1){
+                    JOptionPane.showMessageDialog(null, "Set a User Type");
+                }                      
             }
             else {
                 aUserID = Integer.parseInt(txtUserId.getText());                
@@ -349,12 +348,12 @@ public class AdminBase extends main {
                 formWindowOpened(null);
 
                 JOptionPane.showMessageDialog(null, "Account has been added!");
-
-                int ids = randNumGen("accounts", "userid");
                 
-                txtUserId.setText(String.valueOf(ids));
-                txtFullname.setText(null);
-                txtPassword.setText(null);
+                int randomID = randNumGen("accounts", "userid");
+                
+                txtUserId.setText(String.valueOf(randomID));
+                txtFullname.setText("");
+                txtPassword.setText("");
                 cbUserType.setSelectedIndex(0);
                 
                 fill1.setVisible(false);
@@ -420,51 +419,42 @@ public class AdminBase extends main {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String searchUserId;
+        int searchUserId = 0;
         
-        searchUserId = JOptionPane.showInputDialog(null, "Search for User ID:", "Finding the Account", 
-                JOptionPane.QUESTION_MESSAGE);
-        if(searchUserId!=null){
-            try{
-                int newId = Integer.parseInt(searchUserId); 
-                txtFullname.setEditable(false);
-                txtPassword.setEditable(false);
-                txtUserId.setEditable(false);
-                cbUserType.setEnabled(false);
+        try{
+            txtFullname.setEditable(false);
+            txtPassword.setEditable(false);
+            txtUserId.setEditable(false);
+            cbUserType.setEnabled(false);
+            
+            searchUserId = Integer.parseInt(JOptionPane.showInputDialog(null, "Search for User ID:", "Finding the Account", 
+                    JOptionPane.QUESTION_MESSAGE));        
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ACCOUNTS WHERE USERID = " 
+                    + searchUserId);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "User ID: " + rs.getInt("USERID") + "\nFullname: " + rs.getString("FULLNAME") +
+                            "\nPassword: " + rs.getString("PASSWORD") + "\nUser Type: " + rs.getString("USERTYPE"), "Account Details", 
+                            JOptionPane.INFORMATION_MESSAGE);
 
-                try {
-                    ResultSet rs = stmt.executeQuery("SELECT * FROM ACCOUNTS WHERE USERID = " 
-                            + searchUserId);
-                    if (rs.next()) {
-                        JOptionPane.showMessageDialog(null, "User ID: " + aUserID + "\nFullname: " + rs.getString("FULLNAME") +
-                                    "\nPassword: " + rs.getString("PASSWORD") + "\nUser Type: " + rs.getString("USERTYPE"), "Account Details", 
-                                    JOptionPane.INFORMATION_MESSAGE);
-
-                        txtFullname.setText(rs.getString("FULLNAME"));
-                        txtPassword.setText(rs.getString("PASSWORD"));
-                        txtUserId.setText(String.valueOf(aUserID));
-                        cbUserType.setSelectedItem(rs.getString("USERTYPE"));
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Account not Found!");
-                        }
-                } catch (SQLException err) {
-                    JOptionPane.showMessageDialog(AdminBase.this, err.getMessage());
-                }        
-            } catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null, "Invalid input. Please enter an integer value.");
-            }
+                txtFullname.setText(rs.getString("FULLNAME"));
+                txtPassword.setText(rs.getString("PASSWORD"));
+                txtUserId.setText(String.valueOf(rs.getInt("USERID")));
+                cbUserType.setSelectedItem(rs.getString("USERTYPE"));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Account not Found!");
+                }
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(AdminBase.this, err.getMessage());                  
+        } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid input! Please enter an integer.");
         }   
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void randomNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomNumberActionPerformed
-       int ids = randNumGen("accounts", "userid");
+       int randomID = randNumGen("accounts", "userid");
         
-       txtUserId.setText(String.valueOf(ids));
+       txtUserId.setText(String.valueOf(randomID));
     }//GEN-LAST:event_randomNumberActionPerformed
-
-    private void mainTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTableMouseClicked
-       
-    }//GEN-LAST:event_mainTableMouseClicked
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         logOut();
@@ -473,9 +463,26 @@ public class AdminBase extends main {
     private void mainTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTableMousePressed
         ids = Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString());
         
+        txtFullname.setEditable(false);
+        txtPassword.setEditable(false);
+        txtUserId.setEditable(false);        
+        cbUserType.setEnabled(false);
         btnSave.setVisible(true);
+        btnSave.setEnabled(false);
         btnEdit.setVisible(true);
-        btnDelete.setVisible(true);
+        btnDelete.setVisible(true);             
+        try{
+        ResultSet rs = stmt.executeQuery("SELECT * FROM ACCOUNTS WHERE USERID = " 
+                + ids);            
+            if (rs.next()) {  
+                txtFullname.setText(rs.getString("FULLNAME"));
+                txtPassword.setText(rs.getString("PASSWORD"));
+                txtUserId.setText(String.valueOf(rs.getInt("USERID")));
+                cbUserType.setSelectedItem(rs.getString("USERTYPE"));            
+            }
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(AdminBase.this, err.getMessage());                  
+        }
     }//GEN-LAST:event_mainTableMousePressed
 
     private boolean checkBorrowedBooks(int userId) {
