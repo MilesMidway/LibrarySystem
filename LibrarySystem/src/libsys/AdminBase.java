@@ -291,7 +291,7 @@ public class AdminBase extends main {
                     btnSave.setVisible(false);
                     btnEdit.setVisible(false);
                     btnDelete.setVisible(false);
-
+                    
                     refreshRsStmt("accounts");
                     formWindowOpened(null);
                 }
@@ -373,6 +373,7 @@ public class AdminBase extends main {
         
         cbUserType.setEnabled(true);
         btnSave.setEnabled(true);
+        btnAdd.setVisible(false);
         
         randomNumber.setEnabled(true);
         refreshRsStmt("accounts");
@@ -463,10 +464,7 @@ public class AdminBase extends main {
     private void mainTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTableMousePressed
         ids = Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString());
         
-        txtFullname.setEditable(false);
-        txtPassword.setEditable(false);
-        txtUserId.setEditable(false);        
-        cbUserType.setEnabled(false);
+        btnAdd.setVisible(false);
         btnSave.setVisible(true);
         btnSave.setEnabled(false);
         btnEdit.setVisible(true);
