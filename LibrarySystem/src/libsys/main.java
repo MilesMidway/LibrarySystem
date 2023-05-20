@@ -260,11 +260,17 @@ public class main extends javax.swing.JFrame {
     //Returns true if the length of string in a textfield is less than the limit.
     public boolean lessthanLength(int limit, JTextField textfield)
     {
-        if(textfield.getText().length() < limit){
-            return true;
-        } else{
-            return false;
-        }
+        return textfield.getText().length() < limit;
+    }
+
+    public long dateDiff(Date duedate, Date currentdate){
+        long millDiff = duedate.getTime() - currentdate.getTime();
+        long daysDiff = millDiff/(1000 * 60 * 60 * 24);
+        return daysDiff;
+    }
+    public boolean isOverDue(Date date, Date now){
+        long diff = dateDiff(date, now);
+        return diff<0;
     }
     // The first statement/s to be called
     public static void main(String[] args) {

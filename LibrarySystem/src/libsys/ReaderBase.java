@@ -1,9 +1,11 @@
 package libsys;
 
 import java.awt.Window;
+import java.sql.Date;
 import libsys.AdminBase;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +15,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -49,6 +52,7 @@ public class ReaderBase extends main {
         btnSearch = new Button_Gradient.ButtonGradient();
         btnViewBook = new Button_Gradient.ButtonGradient();
         btnLogOut = new Button_Gradient.ButtonGradient();
+        btnbookBorrowed = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
@@ -149,6 +153,14 @@ public class ReaderBase extends main {
         });
         jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 520, 140, 40));
 
+        btnbookBorrowed.setText("View Book");
+        btnbookBorrowed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbookBorrowedActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnbookBorrowed, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 210, -1, 20));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/librarrtt.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -50, 1120, 680));
 
@@ -157,7 +169,6 @@ public class ReaderBase extends main {
         setSize(new java.awt.Dimension(1123, 620));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
 
     private void mainTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTableMouseClicked
         int selectedRow = mainTable.getSelectedRow();
@@ -204,7 +215,34 @@ public class ReaderBase extends main {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         initialSearch();
+        showOverDueMessage();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnbookBorrowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbookBorrowedActionPerformed
+        
+        try {
+            databaseConnect("books");
+            rs = stmt.executeQuery("SELECT TITLE, DUEDATE FROM BOOKS WHERE BORROWER=" + currUserID);     
+            if(rs.next()){
+            Date localNow = Date.valueOf(LocalDate.now());
+            Date bookDue = rs.getDate("DUEDATE");
+            boolean isOverDue = isOverDue(bookDue, localNow);                              
+                if(!isOverDue){
+                JOptionPane.showMessageDialog(null, "You are currently borrowing: " + rs.getString("TITLE") + "\nThe book is due: " + rs.getDate("DUEDATE"), "Book Details",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else{
+                JOptionPane.showMessageDialog(null, "You are currently borrowing: " + rs.getString("TITLE") + "\nThe book is due: " + rs.getDate("DUEDATE") +"\nYour book is overdue.", "Book Details",
+                            JOptionPane.INFORMATION_MESSAGE);                    
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "You are currently not borrowing any book", "Book Details",
+                            JOptionPane.INFORMATION_MESSAGE);                     
+            }
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
+        }        
+    }//GEN-LAST:event_btnbookBorrowedActionPerformed
 
     public void allAddBook(String[] bookData) throws Exception 
     {
@@ -454,7 +492,24 @@ public class ReaderBase extends main {
             }
         });
     }
-
+    public void showOverDueMessage(){
+        try {
+            databaseConnect("books");
+            rs = stmt.executeQuery("SELECT TITLE, DUEDATE FROM BOOKS WHERE BORROWER=" + currUserID);     
+            if(rs.next()){
+            Date localNow = Date.valueOf(LocalDate.now());
+            Date bookDue = rs.getDate("DUEDATE");
+            boolean isOverDue = isOverDue(bookDue, localNow);                              
+                if(isOverDue){
+                JOptionPane.showMessageDialog(null, "You have not returned the book in a timely manner! Check the library rules for the fining system!", "Book Overdue!!",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+            }    
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
+        }                 
+    }
+    
     public void sortDescending(List<String[]> data, int sortColumn) {     
         Collections.sort(data, new Comparator<String[]>() {
             @Override
@@ -487,6 +542,7 @@ public class ReaderBase extends main {
     public Button_Gradient.ButtonGradient btnLogOut;
     private Button_Gradient.ButtonGradient btnSearch;
     private Button_Gradient.ButtonGradient btnViewBook;
+    private javax.swing.JButton btnbookBorrowed;
     private javax.swing.JComboBox<String> cbAvail;
     private javax.swing.JComboBox<String> cbCending;
     private javax.swing.JComboBox<String> cbGenre;

@@ -335,12 +335,12 @@ public class BookBorrowMan extends main {
                 if (updateRs.next()) {
                     Date localNow = Date.valueOf(LocalDate.now());
                     Date bookDue = updateRs.getDate("DUEDATE");
-                    long diff_of_dates = dateDiff(bookDue, localNow);
+                    boolean isOverDue = isOverDue(bookDue, localNow);
                     availability = updateRs.getString("AVAILABILITY");
 
                     if (availability.equals("BORROWING")) {
                         availability = "BORROWED";
-                    } else if (availability.equals("RETURNING") && (diff_of_dates >= 0)) {
+                    } else if (availability.equals("RETURNING") && isOverDue) {
                         availability = "AVAILABLE";
                         updateRs.updateNull("BORROWER");
                         updateRs.updateNull("DUEDATE");
@@ -474,11 +474,6 @@ public class BookBorrowMan extends main {
             }
         }
 }
-    public long dateDiff(Date duedate, Date currentdate){
-        long millDiff = duedate.getTime() - currentdate.getTime();
-        long daysDiff = millDiff/(1000 * 60 * 60 * 24);
-        return daysDiff;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgBorrower;
