@@ -340,7 +340,7 @@ public class BookBorrowMan extends main {
 
                     if (availability.equals("BORROWING")) {
                         availability = "BORROWED";
-                    } else if (availability.equals("RETURNING") && isOverDue) {
+                    } else if (availability.equals("RETURNING") && !isOverDue) {
                         availability = "AVAILABLE";
                         updateRs.updateNull("BORROWER");
                         updateRs.updateNull("DUEDATE");
@@ -399,12 +399,16 @@ public class BookBorrowMan extends main {
 
                 while (updateRs.next()) {
                     availability = updateRs.getString("AVAILABILITY");
-                    if (availability.equals("BORROWING")) {
-                        availability = "AVAILABLE";
-                    } else if (availability.equals("RETURNING")) {
-                        availability = "BORROWED";
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Book Overdue. Please handle the case for overdue books.");
+                    switch (availability) {
+                        case "BORROWING":
+                            availability = "AVAILABLE";
+                            break;
+                        case "RETURNING":
+                            availability = "BORROWED";
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Book Overdue. Please handle the case for overdue books.");
+                            break;
                     }
 
                     updateRs.updateString("AVAILABILITY", availability);

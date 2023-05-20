@@ -219,16 +219,29 @@ public class ReaderBase extends main {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnbookBorrowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbookBorrowedActionPerformed
-        
+        String n = "";
         try {
             databaseConnect("books");
-            rs = stmt.executeQuery("SELECT TITLE, DUEDATE FROM BOOKS WHERE BORROWER=" + currUserID);     
+            rs = stmt.executeQuery("SELECT TITLE, DUEDATE, AVAILABILITY FROM BOOKS WHERE BORROWER=" + currUserID);
             if(rs.next()){
+                
+            switch(rs.getString("AVAILABILITY")){
+                case "BORROWING":
+                    n = "\nYou have sent a request to the Librarian to borrow a book.";
+                    break;
+                case "RETURNING":
+                    n = "\nYou have decided to return the book. Please wait for the Librarian to acknowledge your request.";
+                    break;
+                case "BORROWED":
+                    n = "\nYou can now borrow the book.";
+                    break;
+            }
+            
             Date localNow = Date.valueOf(LocalDate.now());
             Date bookDue = rs.getDate("DUEDATE");
             boolean isOverDue = isOverDue(bookDue, localNow);                              
                 if(!isOverDue){
-                JOptionPane.showMessageDialog(null, "You are currently borrowing: " + rs.getString("TITLE") + "\nThe book is due: " + rs.getDate("DUEDATE"), "Book Details",
+                JOptionPane.showMessageDialog(null, "You are currently borrowing: " + rs.getString("TITLE") + "\nThe book is due: " + rs.getDate("DUEDATE") + n, "Book Details",
                             JOptionPane.INFORMATION_MESSAGE);
                 } else{
                 JOptionPane.showMessageDialog(null, "You are currently borrowing: " + rs.getString("TITLE") + "\nThe book is due: " + rs.getDate("DUEDATE") +"\nYour book is overdue.", "Book Details",
@@ -508,6 +521,9 @@ public class ReaderBase extends main {
         } catch (SQLException err) {
             System.out.println(err.getMessage());
         }                 
+    }
+    public void showAcceptanceMessage(){
+        
     }
     
     public void sortDescending(List<String[]> data, int sortColumn) {     
