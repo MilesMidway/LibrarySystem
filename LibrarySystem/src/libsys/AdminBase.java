@@ -387,30 +387,25 @@ public class AdminBase extends main {
             if (rs.next()) {
                 del = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this account?", 
                         "Confirmation", JOptionPane.YES_NO_OPTION);
-                if (del == 0) 
+                boolean hasBorrowedBooks = checkBorrowedBooks(ids);
+                databaseConnect("accounts");
+                if (del == 0)                 
                 {
-                    boolean hasBorrowedBooks = checkBorrowedBooks(ids);
-
-                        int confirm = JOptionPane.showConfirmDialog(null, "This account has borrowed books. Do you want to proceed with deletion?",
-                                "Confirmation", JOptionPane.YES_NO_OPTION);
-                        if (confirm == 0 && hasBorrowedBooks) 
-                        {
+                    if(!hasBorrowedBooks){
+                        rs.deleteRow();
+                        JOptionPane.showMessageDialog(null, "Account has been deleted!");                          
+                        formWindowOpened(null);
+                    }
+                    else{
+                    int confirm = JOptionPane.showConfirmDialog(null, "This account has borrowed books. Do you want to proceed with deletion?",
+                        "Confirmation", JOptionPane.YES_NO_OPTION);
+                        if (confirm == 0) {
+                            updateBorrowedBooks(ids);
                             rs.deleteRow();
                             JOptionPane.showMessageDialog(null, "Account has been deleted!");                       
-                            //int ids = randNumGen("accounts", "userid");
-                            //txtUserId.setText(String.valueOf(ids));
-                            updateBorrowedBooks(ids);
                             formWindowOpened(null);
                         }
-                        else
-                        {
-                            rs.deleteRow();
-                            JOptionPane.showMessageDialog(null, "Account has been deleted!");
-                            //int ids = randNumGen("accounts", "userid");
-                            //txtUserId.setText(String.valueOf(ids));
-                            updateBorrowedBooks(ids);
-                            formWindowOpened(null);
-                        }
+                    }
                 } 
             }
    
@@ -441,7 +436,15 @@ public class AdminBase extends main {
                 txtPassword.setText(rs.getString("PASSWORD"));
                 txtUserId.setText(String.valueOf(rs.getInt("USERID")));
                 cbUserType.setSelectedItem(rs.getString("USERTYPE"));
+                txtFullname.setEditable(true);
+                txtPassword.setEditable(true);
+                txtUserId.setEditable(true);
+                cbUserType.setEnabled(true);                
                 } else {
+                txtFullname.setEditable(true);
+                txtPassword.setEditable(true);
+                txtUserId.setEditable(true);
+                cbUserType.setEnabled(true);                
                     JOptionPane.showMessageDialog(null, "Account not Found!");
                 }
         } catch (SQLException err) {
@@ -510,7 +513,8 @@ public class AdminBase extends main {
                 rs.updateNull("BORROWER");
                 rs.updateNull("DUEDATE");
                 rs.updateRow();
-            }
+                refreshRsStmt("books");
+            }            
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(AdminBase.this, err.getMessage());
         }
