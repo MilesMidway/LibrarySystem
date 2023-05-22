@@ -322,6 +322,7 @@ public class BookBorrowMan extends main {
     }//GEN-LAST:event_rbReturningItemStateChanged
 
     private void btnAcceptBorrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptBorrowActionPerformed
+        boolean isOverDue = false;
         if (borrowTable.getSelectedRow() != -1) {
             try {
                 int selectedRow = borrowTable.getSelectedRow();
@@ -333,21 +334,25 @@ public class BookBorrowMan extends main {
                 ResultSet updateRs = updateStmt.executeQuery("SELECT * FROM BOOKS WHERE BOOKID = " + borrBookID);
 
                 if (updateRs.next()) {
-                    Date localNow = Date.valueOf(LocalDate.now());
-                    Date bookDue = updateRs.getDate("DUEDATE");
-                    boolean isOverDue = isOverDue(bookDue, localNow);
+                    
                     availability = updateRs.getString("AVAILABILITY");
+                    if (availability.equals("RETURNING")){
+                        Date localNow = Date.valueOf(LocalDate.now());
+                        Date bookDue = updateRs.getDate("DUEDATE");
+                        isOverDue = isOverDue(bookDue, localNow);
+                    }
+                    
 
                     if (availability.equals("BORROWING")) {
                         availability = "BORROWED";
                         LocalDate currentDate = LocalDate.now();
                         LocalDate dueDate = currentDate.plusDays(3);
-                        rs.updateDate("DUEDATE", java.sql.Date.valueOf(dueDate));
+                        updateRs.updateDate("DUEDATE", java.sql.Date.valueOf(dueDate));
                     } else if (availability.equals("RETURNING") && !isOverDue) {
                         availability = "AVAILABLE";
                         updateRs.updateNull("BORROWER");
                         updateRs.updateNull("DUEDATE");
-                    } else {
+                    } else if(isOverDue){
                         JOptionPane.showMessageDialog(null, "Book Overdue. Please handle the case for overdue books.");
                     }
 
