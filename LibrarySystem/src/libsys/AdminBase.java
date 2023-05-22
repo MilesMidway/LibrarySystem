@@ -394,7 +394,14 @@ public class AdminBase extends main {
                     if(!hasBorrowedBooks){
                         rs.deleteRow();
                         JOptionPane.showMessageDialog(null, "Account has been deleted!");                          
-                        formWindowOpened(null);
+                        txtFullname.setText("");
+                        txtPassword.setText("");
+                        cbUserType.setSelectedIndex(0);
+                        btnAdd.setVisible(true);
+                        btnSave.setVisible(false);
+                        btnEdit.setVisible(false);
+                        btnDelete.setVisible(false);                        
+                        formWindowOpened(null);                        
                     }
                     else{
                     int confirm = JOptionPane.showConfirmDialog(null, "This account has borrowed books. Do you want to proceed with deletion?",
@@ -403,7 +410,14 @@ public class AdminBase extends main {
                             updateBorrowedBooks(ids);
                             rs.deleteRow();
                             JOptionPane.showMessageDialog(null, "Account has been deleted!");                       
-                            formWindowOpened(null);
+                            txtFullname.setText("");
+                            txtPassword.setText("");
+                            cbUserType.setSelectedIndex(0);
+                            btnAdd.setVisible(true);
+                            btnSave.setVisible(false);
+                            btnEdit.setVisible(false);
+                            btnDelete.setVisible(false);                            
+                            formWindowOpened(null);                            
                         }
                     }
                 } 

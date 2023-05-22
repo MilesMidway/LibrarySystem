@@ -219,9 +219,6 @@ public class BookViewer extends main {
                 {                    
                     rs.updateString("AVAILABILITY", "BORROWING");
                     rs.updateInt("BORROWER", currUserID);   
-                    LocalDate currentDate = LocalDate.now();
-                    LocalDate dueDate = currentDate.plusDays(3);
-                    rs.updateDate("DUEDATE", java.sql.Date.valueOf(dueDate));
                     rs.updateRow();
                 }
                 JOptionPane.showMessageDialog(null, "You successfully borrowed the book.");

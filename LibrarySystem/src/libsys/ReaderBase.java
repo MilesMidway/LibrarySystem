@@ -220,41 +220,52 @@ public class ReaderBase extends main {
 
     private void btnbookBorrowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbookBorrowedActionPerformed
         String n = "";
+        String title;
         try {
             databaseConnect("books");
-            rs = stmt.executeQuery("SELECT TITLE, DUEDATE, AVAILABILITY FROM BOOKS WHERE BORROWER=" + currUserID);
-            if(rs.next()){
-                
-            switch(rs.getString("AVAILABILITY")){
-                case "BORROWING":
-                    n = "\nYou have sent a request to the Librarian to borrow a book.";
-                    break;
-                case "RETURNING":
-                    n = "\nYou have decided to return the book. Please wait for the Librarian to acknowledge your request.";
-                    break;
-                case "BORROWED":
-                    n = "\nYou can now borrow the book.";
-                    break;
-            }
-            
-            Date localNow = Date.valueOf(LocalDate.now());
-            Date bookDue = rs.getDate("DUEDATE");
-            boolean isOverDue = isOverDue(bookDue, localNow);                              
-                if(!isOverDue){
-                JOptionPane.showMessageDialog(null, "You are currently borrowing: " + rs.getString("TITLE") + "\nThe book is due: " + rs.getDate("DUEDATE") + n, "Book Details",
-                            JOptionPane.INFORMATION_MESSAGE);
-                } else{
-                JOptionPane.showMessageDialog(null, "You are currently borrowing: " + rs.getString("TITLE") + "\nThe book is due: " + rs.getDate("DUEDATE") +"\nYour book is overdue.", "Book Details",
-                            JOptionPane.INFORMATION_MESSAGE);                    
-                }
-            }
-            else{
+            rs = stmt.executeQuery("SELECT BORROWER FROM BOOKS WHERE BORROWER=" + currUserID);
+            if(!rs.next()){
                 JOptionPane.showMessageDialog(null, "You are currently not borrowing any book", "Book Details",
-                            JOptionPane.INFORMATION_MESSAGE);                     
+                            JOptionPane.INFORMATION_MESSAGE);                    
+            } else{
+                rs = stmt.executeQuery("SELECT TITLE, DUEDATE, AVAILABILITY FROM BOOKS WHERE BORROWER=" + currUserID);
+                if(rs.next()){
+                title = rs.getString("TITLE");
+                switch(rs.getString("AVAILABILITY")){
+                    case "BORROWING":
+                        n = "\nYou have sent a request to the Librarian to borrow a book.";
+                        break;
+                    case "RETURNING":
+                        n = "\nYou have decided to return the book. Please wait for the Librarian to acknowledge your request.";
+                        break;
+                    case "BORROWED":
+                        n = "\nYou can now borrow the book.";
+                        break;
+                }
+
+                Date localNow = Date.valueOf(LocalDate.now());
+                Date bookDue = rs.getDate("DUEDATE");
+                boolean isOverDue = isOverDue(bookDue, localNow);                              
+                    if(!isOverDue){
+                    JOptionPane.showMessageDialog(null, "You are currently borrowing: " + title + "\nThe book is due: " + rs.getDate("DUEDATE") + n, "Book Details",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else{
+                    JOptionPane.showMessageDialog(null, "You are currently borrowing: " + title + "\nThe book is due: " + rs.getDate("DUEDATE") +"\nYour book is overdue.", "Book Details",
+                                JOptionPane.INFORMATION_MESSAGE);                    
+                    }
+                }
             }
         } catch (SQLException err) {
             System.out.println(err.getMessage());
-        }        
+        } catch (NullPointerException err){
+            try {
+                JOptionPane.showMessageDialog(null, "You are currently attempting to borrow: " + rs.getString("TITLE") + n, "Book Details",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(ReaderBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }//GEN-LAST:event_btnbookBorrowedActionPerformed
 
     public void allAddBook(String[] bookData) throws Exception 
@@ -508,14 +519,17 @@ public class ReaderBase extends main {
     public void showOverDueMessage(){
         try {
             databaseConnect("books");
-            rs = stmt.executeQuery("SELECT TITLE, DUEDATE FROM BOOKS WHERE BORROWER=" + currUserID);     
+            rs = stmt.executeQuery("SELECT TITLE, DUEDATE, AVAILABILITY FROM BOOKS WHERE BORROWER=" + currUserID);
             if(rs.next()){
-            Date localNow = Date.valueOf(LocalDate.now());
-            Date bookDue = rs.getDate("DUEDATE");
-            boolean isOverDue = isOverDue(bookDue, localNow);                              
-                if(isOverDue){
-                JOptionPane.showMessageDialog(null, "You have not returned the book in a timely manner! Check the library rules for the fining system!", "Book Overdue!!",
-                            JOptionPane.WARNING_MESSAGE);
+                String availability = rs.getString("AVAILABILITY");
+                if(availability.equals("BORROWED")||availability.equals("RETURNING")){
+                    Date localNow = Date.valueOf(LocalDate.now());
+                    Date bookDue = rs.getDate("DUEDATE");
+                    boolean isOverDue = isOverDue(bookDue, localNow);                              
+                        if(isOverDue){
+                        JOptionPane.showMessageDialog(null, "You have not returned the book in a timely manner! Check the library rules for the fining system!", "Book Overdue!!",
+                                    JOptionPane.WARNING_MESSAGE);
+                        }
                 }
             }    
         } catch (SQLException err) {

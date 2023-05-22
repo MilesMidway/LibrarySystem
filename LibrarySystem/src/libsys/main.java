@@ -208,14 +208,14 @@ public class main extends javax.swing.JFrame {
         }
         else if (matchAcc && !matchPass)
         {
-            txtLogName.setText(null);
-            txtLogPass.setText(null);
+            txtLogName.setText("");
+            txtLogPass.setText("");
             JOptionPane.showMessageDialog(null, "Incorrect Password!");
         }
         else
         {
-            txtLogName.setText(null);
-            txtLogPass.setText(null);
+            txtLogName.setText("");
+            txtLogPass.setText("");
             JOptionPane.showMessageDialog(null, "Account not found!", "", JOptionPane.ERROR_MESSAGE);
         }
     }

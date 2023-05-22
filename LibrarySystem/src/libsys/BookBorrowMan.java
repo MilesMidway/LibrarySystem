@@ -328,7 +328,7 @@ public class BookBorrowMan extends main {
                 Object val = borrowTable.getValueAt(selectedRow, 2);
                 borrBookID = Integer.parseInt(val.toString());
 
-                String availability = null;
+                String availability;
                 Statement updateStmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
                 ResultSet updateRs = updateStmt.executeQuery("SELECT * FROM BOOKS WHERE BOOKID = " + borrBookID);
 
@@ -340,6 +340,9 @@ public class BookBorrowMan extends main {
 
                     if (availability.equals("BORROWING")) {
                         availability = "BORROWED";
+                        LocalDate currentDate = LocalDate.now();
+                        LocalDate dueDate = currentDate.plusDays(3);
+                        rs.updateDate("DUEDATE", java.sql.Date.valueOf(dueDate));
                     } else if (availability.equals("RETURNING") && !isOverDue) {
                         availability = "AVAILABLE";
                         updateRs.updateNull("BORROWER");
@@ -354,7 +357,7 @@ public class BookBorrowMan extends main {
 
                 refreshRsStmt("books");
                 updateBorrowedTable();
-                borrowTableModel.setRowCount(0);
+                updateBorrowTable();
 
                 // Store data from ResultSet in a separate data structure
                 List<Object[]> resultSetData = new ArrayList<>();
@@ -419,7 +422,7 @@ public class BookBorrowMan extends main {
                 updateStmt.close();
                 refreshRsStmt("books");
                 updateBorrowedTable();
-                borrowTableModel.setRowCount(0);
+                updateBorrowTable();
 
                 Statement selectStmt = con.createStatement();
                 ResultSet selectRs = selectStmt.executeQuery("SELECT * FROM BOOKS");
